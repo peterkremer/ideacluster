@@ -1,0 +1,36 @@
+/* CSS declarations go here */
+.idea{
+	padding: 5px;
+	margin: 5px;
+}
+
+.page-header{
+	margin-left: 15px;
+}
+
+#clustergroup{
+	height: 100%;
+
+}
+
+#idealist .ui-selecting {
+	background: #FECA40;
+}
+#idealist .ui-selected {
+	background: #F39814; 
+	color: white;
+}
+#idealist {
+	margin: 0; 
+	padding: 0;
+	padding:0; 
+	border:solid 1px #DDD;
+}
+#idealist > div { 
+	margin: 0; 
+	padding:10px; 
+	border:solid 1px #CCC; 
+}
+.ui-selectable-helper {
+	position: absolute; z-index: 100; border:1px dotted black;
+}

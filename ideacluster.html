@@ -1,0 +1,36 @@
+<head>
+  <title>ideacluster</title>
+</head>
+
+<body>
+  {{> IdeaCluster}}
+</body>
+
+<template name="IdeaCluster">
+	<h1 class="page-header">Alternate uses for a bowling pin</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3" background-color='#f5f5f5'>
+				<h1>Idea List</h1>
+				<ul id="idealist">
+					{{#each ideas}}
+						<div class="bg-primary ui-widget-content">{{idea}}</div>	
+					{{/each}}
+				</div>
+			</div>
+			<div id="clustergroup" class="col-md-9 bg-warning">
+				<h1>Clusters</h1>
+				<div id="clusters" class="container"></div>
+			</div>
+		</div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+</template>
+
+
