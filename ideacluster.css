@@ -1,36 +1,23 @@
 /* CSS declarations go here */
-.idea{
-	padding: 5px;
+#left{
+	background-color: #f5f5f5;
+}
+
+ul{
+	list-style: none;
+	list-style-type: none;
+}
+li{
+	border: solid 1px black;
 	margin: 5px;
+	padding: 5px;
+	background-color: #fff;
 }
 
-.page-header{
-	margin-left: 15px;
+li.selected {
+    background-color:GoldenRod
 }
 
-#clustergroup{
-	height: 100%;
-
-}
-
-#idealist .ui-selecting {
-	background: #FECA40;
-}
-#idealist .ui-selected {
-	background: #F39814; 
-	color: white;
-}
-#idealist {
-	margin: 0; 
-	padding: 0;
-	padding:0; 
-	border:solid 1px #DDD;
-}
-#idealist > div { 
-	margin: 0; 
-	padding:10px; 
-	border:solid 1px #CCC; 
-}
-.ui-selectable-helper {
-	position: absolute; z-index: 100; border:1px dotted black;
+#clusterarea > ul{
+	border: solid 1px black;
 }

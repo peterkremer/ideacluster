@@ -10,17 +10,23 @@
 	<h1 class="page-header">Alternate uses for a bowling pin</h1>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3" background-color='#f5f5f5'>
-				<h1>Idea List</h1>
-				<ul id="idealist">
+			<div id="left" class="col-md-3">
+				<h3>Create New Stack</h3>
+				<ul class="newstack ui-sortable">
+					<li class="new">Drag ideas here to create a new cluster</li>
+				</ul>
+				<h3>Idea List</h3>
+				<ul class="deck ui-sortable">
 					{{#each ideas}}
-						<div class="bg-primary ui-widget-content">{{idea}}</div>	
+						<li id={{_id}} class="instance">{{idea}}</li>	
 					{{/each}}
-				</div>
+				</ul>
 			</div>
-			<div id="clustergroup" class="col-md-9 bg-warning">
-				<h1>Clusters</h1>
-				<div id="clusters" class="container"></div>
+			<div id="right" class="col-md-9 bg-warning">
+				<h3>Clusters</h3>
+				<div class="stack ui-sortable" id="clusterarea">
+
+				</div>
 			</div>
 		</div>
     </div>
