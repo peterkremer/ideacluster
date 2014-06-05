@@ -4,7 +4,7 @@ if(Meteor.isClient){
     $('ul.newstack').sortable({
         items : '',
         receive : function(event, ui){
-            CreateStack(ui.item);
+            CreateCluster(ui.item);
             ui.item.remove();
         }
     }).disableSelection();
@@ -15,10 +15,10 @@ if(Meteor.isClient){
 
   });
 
-  function CreateStack(item) {
+  function CreateCluster(item) {
     // create a new stack
     var ms = new Date().getTime();
-    $('#clusterarea').append($('<ul class="stack"><input type="text" size="60" class="ultext" id="newcluster" placeholder="Name this cluster"'+ ms +'"></ul>').append(item.clone(true, true)));
+    $('#clusterarea').append($('<ul class="stack col-md-3"><input type="text" size="60" class="ultext" id="newcluster" placeholder="Name this cluster"'+ ms +'"></ul>').append(item.clone(true, true)));
 
     // apply sortable to new stack
     $('ul.stack:last').sortable({
@@ -28,55 +28,63 @@ if(Meteor.isClient){
             if ($(this).children('li').length == 0)
                 $(this).remove();
         }
-    }).disableSelection();
-  }
+    }
+    ).disableSelection();
 
-  function process_form() {
-    var retval = true;
-  
-    //for each ul in div id clusterarea
-    $('#clusterarea ul').each(function()
-    {
-      //for each ul, get the text (and ID if preexisting)
-      var inp = $(this).find('.ultext');
-      var id = inp.attr('id');
-      var text = inp.val();
-    
-      if (id == "ignoreme")
-        return true;
-      
-      if (text == "")
-      {
-        alert("Please ensure all groups have a description in the text box");
-        retval = false;
-        return false;
-      } 
-  
-      var barnstars = [];
-      //and all the barnstars in it
-      $(this).children('li').each(function()
-      {
-        var kid = $(this);
-        barnstars.push(kid.attr('id'));
-      });
-    
-      var list = barnstars.join();
-    
-      //add cluster
-      $('#clusterform').append('<input type="hidden" name="'+
-                    id + '" value="' +
-                    text + '">');
-    
-      //add cluster contents
-      $('#clusterform').append('<input type="hidden" name="grp' + id + '" value="' +
-                  list + '">');
+    $('#clusterarea ul').draggable({
+      snap: "#clusterarea ul", 
+      snapMode: "outer", 
+      grid: [5, 5]
     });
-    return retval;
   }
 
+  function getCenterPos(element){
+    var offset = element.offset();
+    var width = element.width();
+    var height = element.height();
+
+    var centerX = offset.left + width / 2;
+    var centerY = offset.top + height / 2;
+    return [centerX, centerY];
+  }
   
   Template.IdeaCluster.ideas = function(){
     var allIdeas = Ideas.find();
     return allIdeas;
   }
+
+  Template.IdeaCluster.events({
+    'click button#finish' : function(){
+      var finished = true;
+
+      $('#clusterarea').children('ul').each(function(i){
+        var $this = $(this);
+        var clustername = $this.find('input').val();
+        
+        //check if all clusters are named and 
+        if(clustername === ""){
+          alert("Please name all clusters");
+          finished = false;
+          return finished;
+        };
+
+        //gets coordinates of cluster center
+        var thisPosition = getCenterPos($this);
+
+        //iterates through list items and adds 
+        var kids = $this.children('li');
+        var thisIdeas = [];
+        kids.each(function(k){
+          var currId = $(this).attr('id');
+          var currIdea = $(this).text();
+          var idea = {id: currId, instance: currIdea};
+          thisIdeas.push(idea);
+        });
+
+        var thisCluster = new Cluster(clustername, thisIdeas, thisPosition)
+        //console.log(thisCluster);
+
+      });
+    }
+  })
 }

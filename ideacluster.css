@@ -7,6 +7,7 @@ ul{
 	list-style: none;
 	list-style-type: none;
 }
+
 li{
 	border: solid 1px black;
 	margin: 5px;
@@ -18,6 +19,16 @@ li.selected {
     background-color:GoldenRod
 }
 
+#clusterarea{
+	display: inline;
+	height: 600px;
+	width: 600px;
+}
+
 #clusterarea > ul{
 	border: solid 1px black;
+}
+
+.ultext{
+	width:100%;
 }

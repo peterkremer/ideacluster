@@ -11,7 +11,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div id="left" class="col-md-3">
-				<h3>Create New Stack</h3>
+				<h3>Create New Cluster</h3>
 				<ul class="newstack ui-sortable">
 					<li class="new">Drag ideas here to create a new cluster</li>
 				</ul>
@@ -22,12 +22,11 @@
 					{{/each}}
 				</ul>
 			</div>
-			<div id="right" class="col-md-9 bg-warning">
+			<div id="right" class="col-md-9 bg-warning container-fluid">
 				<h3>Clusters</h3>
-				<div class="stack ui-sortable" id="clusterarea">
-
-				</div>
+				<div class="stack ui-sortable" id="clusterarea"></div>
 			</div>
+			<button id='finish' class='btn btn-large btn-primary'>Finished</button>
 		</div>
     </div>
 

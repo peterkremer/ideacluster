@@ -1,4 +1,5 @@
 Ideas = new Meteor.Collection("ideas");
+Clusters = new Meteor.Collection("clusters");
 
 var isPop = false;
 
@@ -12,5 +13,11 @@ function populateList(){
 		console.log("list populated");
 	}
 }
+
+Cluster = function(name, ideas, position){
+	this.name = name;
+	this.ideas = ideas;
+	this.position = position;
+};
 
 populateList();
