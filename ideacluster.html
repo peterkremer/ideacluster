@@ -8,6 +8,7 @@
 
 <template name="IdeaCluster">
 	<h1 class="page-header">Alternate uses for a bowling pin</h1>
+	<button id='finish' class='btn btn-large btn-primary'>Finished</button>
 	<div class="container-fluid">
 		<div class="row">
 			<div id="left" class="col-md-3">
@@ -16,17 +17,16 @@
 					<li class="new">Drag ideas here to create a new cluster</li>
 				</ul>
 				<h3>Idea List</h3>
-				<ul class="deck ui-sortable">
+				<ul id="idealist" class="deck ui-sortable">
 					{{#each ideas}}
-						<li id={{_id}} class="instance">{{idea}}</li>	
+						<li id={{_id}} class="dd-item instance"><div class="dd-handle">{{idea}}</div></li>
 					{{/each}}
 				</ul>
 			</div>
-			<div id="right" class="col-md-9 bg-warning container-fluid">
+			<div id="right" class="col-md-9 container-fluid">
 				<h3>Clusters</h3>
 				<div class="stack ui-sortable" id="clusterarea"></div>
 			</div>
-			<button id='finish' class='btn btn-large btn-primary'>Finished</button>
 		</div>
     </div>
 

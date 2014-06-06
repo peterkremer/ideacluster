@@ -4,7 +4,7 @@ if(Meteor.isClient){
     $('ul.newstack').sortable({
         items : '',
         receive : function(event, ui){
-            CreateCluster(ui.item);
+            createCluster(ui.item);
             ui.item.remove();
         }
     }).disableSelection();
@@ -13,12 +13,18 @@ if(Meteor.isClient){
       connectWith : 'ul.deck, ul.newstack, ul.stack'
     }).disableSelection();
 
+    $(function(){
+      $('#idealist').slimScroll({
+        height: '300px'
+      });
+    });
+
   });
 
-  function CreateCluster(item) {
+  function createCluster(item) {
     // create a new stack
     var ms = new Date().getTime();
-    $('#clusterarea').append($('<ul class="stack col-md-3"><input type="text" size="60" class="ultext" id="newcluster" placeholder="Name this cluster"'+ ms +'"></ul>').append(item.clone(true, true)));
+    $('#clusterarea').append($('<ul class="dd-list stack col-md-3"><input type="text" size="60" class="ultext" id="newcluster" placeholder="Name this cluster"'+ ms +'"></ul>').append(item.clone(true, true)));
 
     // apply sortable to new stack
     $('ul.stack:last').sortable({
@@ -28,8 +34,7 @@ if(Meteor.isClient){
             if ($(this).children('li').length == 0)
                 $(this).remove();
         }
-    }
-    ).disableSelection();
+    }).disableSelection();
 
     $('#clusterarea ul').draggable({
       snap: "#clusterarea ul", 
@@ -83,6 +88,7 @@ if(Meteor.isClient){
 
         var thisCluster = new Cluster(clustername, thisIdeas, thisPosition)
         //console.log(thisCluster);
+        Clusters.insert(thisCluster);
 
       });
     }
